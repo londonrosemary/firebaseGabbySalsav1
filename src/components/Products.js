@@ -18,6 +18,8 @@ export default function Products({ handleAddToCart }) {
   return (
     <div>
       <Header />
+      <br />
+      <br />
       <Container>
         {products.map((product) => {
           return (
