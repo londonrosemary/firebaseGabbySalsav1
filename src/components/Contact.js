@@ -2,21 +2,21 @@ import React from "react";
 import { Container } from "react-bootstrap";
 
 export default function Contact(props) {
-  const githubClick = () => {
-    window.open("https://github.com/koltvictor", "_blank");
-  };
+  //   const githubClick = () => {
+  //     window.open("https://github.com/koltvictor", "_blank");
+  //   };
 
-  const twitterClick = () => {
-    window.open("https://twitter.com/koltadams", "_blank");
-  };
+  //   const twitterClick = () => {
+  //     window.open("https://twitter.com/koltadams", "_blank");
+  //   };
 
-  const emailClick = () => {
-    window.open("mailto:kolt@koltdesigns.com");
-  };
+  //   const emailClick = () => {
+  //     window.open("mailto:kolt@koltdesigns.com");
+  //   };
 
-  const linkedInClick = () => {
-    window.open("https://www.linkedin.com/in/koltadams/", "_blank");
-  };
+  //   const linkedInClick = () => {
+  //     window.open("https://www.linkedin.com/in/koltadams/", "_blank");
+  //   };
 
   return props.trigger ? (
     <Container>

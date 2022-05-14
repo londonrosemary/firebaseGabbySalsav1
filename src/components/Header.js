@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
+import { Nav, Navbar, Container } from "react-bootstrap";
 import Contact from "./Contact";
 
 export default function Header() {
