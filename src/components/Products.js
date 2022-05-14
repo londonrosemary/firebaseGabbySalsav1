@@ -3,6 +3,7 @@ import Header from "./Header";
 import { onSnapshot, collection } from "firebase/firestore";
 import db from "../firebase.js";
 import ProductCard from "./ProductCard";
+import { Container } from "react-bootstrap";
 
 export default function Products({ handleAddToCart }) {
   const [products, setProducts] = useState([]);
@@ -17,15 +18,17 @@ export default function Products({ handleAddToCart }) {
   return (
     <div>
       <Header />
-      {products.map((product) => {
-        return (
-          <ProductCard
-            key={product.id}
-            product={product}
-            handleAddToCart={handleAddToCart}
-          />
-        );
-      })}
+      <Container>
+        {products.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              product={product}
+              handleAddToCart={handleAddToCart}
+            />
+          );
+        })}
+      </Container>
     </div>
   );
 }
