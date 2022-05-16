@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./App.css";
+import db from "./firebase.js";
 import Landing from "./components/Landing";
 import Home from "./components/Home";
 import Products from "./components/Products";
@@ -18,33 +19,21 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setTimedPopup(true);
-    }, 5000);
+    }, 15000);
   }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch("/api/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        name: name,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        res.json().then((user) => {
-          setEmail(user.email);
-          setName(user.name);
-          // setAdmin(false);
-          setTimedPopup(false);
-        });
-      } else {
-        res.json().then((errors) => {
-          setErrors(errors.errors);
-        });
+    const elementsArray = [...event.target.elements];
+
+    const data = elementsArray.reduce((acc, currentValue) => {
+      if (currentValue.id) {
+        acc[currentValue.id] = currentValue.value;
       }
-    });
+      return acc;
+    }, {});
+    db.collection("PopupResponses").add({ name: "" });
   };
 
   return (
@@ -81,7 +70,8 @@ function App() {
           placeholder="Email"
         />
         <br />
-        <button type="text" onClick={handleSubmit}>
+        <br />
+        <button type="text" className="popupButton" onClick={handleSubmit}>
           Submit
         </button>
       </Popup>

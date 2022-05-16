@@ -113,3 +113,55 @@
   height: 10rem;
   width: 11rem;
 }
+
+.homeWrapper{
+  /* background-image: url('https://samsfamoussalsa.com/wp-content/uploads/2020/08/sams-salsa-tabletop.jpg'); */
+  background-repeat: no-repeat;
+  padding-top: 10vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.homePageTextWrapper {
+  background-color: rgba(0, 0, 0, .9);
+  box-shadow: 0 4px 8px 0 black;
+}
+
+.homePageText {
+  text-align: center;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  color: rgb(239, 199, 19);
+  font-family: Noteworthy;
+  font-size: 1.75rem;
+}
+
+.homePageText1 {
+  text-align: center;
+  padding: 1rem;
+  color: rgb(178, 3, 3);
+  font-family: Noteworthy;
+  font-size: 1.75rem;
+}
+
+.homePageText2 {
+  text-align: center;
+  padding: 1rem;
+  color: rgb(212, 80, 36);
+  font-family: Noteworthy;
+  font-size: 1.75rem;
+}
+
+.homePageText3 {
+  text-align: center;
+  padding: 1rem;
+  color: rgb(24, 168, 56);
+  font-family: Noteworthy;
+  font-size: 1.75rem;
+}
+
+.aboutContainer {
+
+}
