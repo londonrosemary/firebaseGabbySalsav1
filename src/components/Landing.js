@@ -9,6 +9,7 @@ export default function Landing() {
           <img
             src="https://i.imgur.com/LpgEW8O.png"
             alt="Gabby's Salsa Motto Logo"
+            className="fade-in-text"
           />
         </a>
         <br />

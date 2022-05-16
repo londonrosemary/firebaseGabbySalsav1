@@ -46,7 +46,7 @@ function App() {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
-      <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
+      {/* <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
         <h2>Welcome To Gabby's Salsa!</h2>
         <br />
         <p>
@@ -74,7 +74,7 @@ function App() {
         <button type="text" className="popupButton" onClick={handleSubmit}>
           Submit
         </button>
-      </Popup>
+      </Popup> */}
     </div>
   );
 }
