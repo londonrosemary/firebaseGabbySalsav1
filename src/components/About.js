@@ -28,11 +28,13 @@ export default function About() {
           </p>
           {/* <img src="https://i.imgur.com/pNEq9l5.png" alt="Gabby's Salsa" /> */}
         </Container>
-        {/* <img
-          src="http://s3.wp.wsu.edu/uploads/sites/2055/2017/07/iStock-477239111-1024x683.jpg"
-          alt="salsa"
-          className="aboutImg"
-        /> */}
+        <Container className="aboutImage">
+          {/* <img
+            src="https://static.ffx.io/images/$zoom_0.52%2C$multiply_2%2C$ratio_1%2C$width_378%2C$x_5%2C$y_43/t_crop_custom/c_scale%2Cw_620%2Cq_88%2Cf_auto/5ceb5dc50fd9508a5db468f401983ed9d3f3888c"
+            alt="salsa"
+            className="fade-in-text"
+          /> */}
+        </Container>
       </div>
     </div>
   );
