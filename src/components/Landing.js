@@ -7,8 +7,15 @@ export default function Landing() {
       <div className="intro">
         <a href="/home">
           <img
-            src="https://i.imgur.com/agVQ7eM.png"
+            src="https://i.imgur.com/LpgEW8O.png"
             alt="Gabby's Salsa Motto Logo"
+          />
+        </a>
+        <br />
+        <a href="/home">
+          <img
+            src="https://i.imgur.com/RHjJSbv.png?1"
+            alt="Gabby's Salsa"
             className="landingLogo"
           />
         </a>

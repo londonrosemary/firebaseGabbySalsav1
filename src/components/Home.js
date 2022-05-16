@@ -14,7 +14,6 @@ export default function Home() {
             <div className="homePageText3">
               Made to order with the freshest ingredients.
             </div>
-            <div className="homePageText">Delivered to your door.</div>
           </h3>
         </Container>
         {/* <div className="newsletter">

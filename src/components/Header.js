@@ -8,7 +8,7 @@ export default function Header() {
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg="light"
+      bg="white"
       variant="light"
       className="navWrapper"
     >
