@@ -8,43 +8,65 @@ import Products from "./components/Products";
 import About from "./components/About";
 import FAQs from "./components/FAQs";
 import Cart from "./components/Cart";
-import Popup from "./components/Popup";
+// import Popup from "./components/Popup";
+import { onSnapshot, collection } from "firebase/firestore";
 
 function App() {
-  const [timedPopup, setTimedPopup] = useState(false);
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [errors, setErrors] = useState(null);
+  // const [timedPopup, setTimedPopup] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [name, setName] = useState("");
+  // const [errors, setErrors] = useState(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTimedPopup(true);
-    }, 15000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setTimedPopup(true);
+  //   }, 15000);
+  // }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const onAdd = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, quantity: exist.quantity + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
 
-    const elementsArray = [...event.target.elements];
-
-    const data = elementsArray.reduce((acc, currentValue) => {
-      if (currentValue.id) {
-        acc[currentValue.id] = currentValue.value;
-      }
-      return acc;
-    }, {});
-    db.collection("PopupResponses").add({ name: "" });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    console.log(localStorage);
+    console.log(cartItems);
   };
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "products"), (snapshot) =>
+        setProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      ),
+    []
+  );
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        <Route
+          path="/products"
+          element={
+            <Products products={products} onAdd={onAdd} cartItems={cartItems} />
+          }
+        />
         <Route path="about" element={<About />} />
         <Route path="/faqs" element={<FAQs />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={<Cart cartItems={cartItems} onAdd={onAdd} />}
+        />
       </Routes>
       {/* <Popup trigger={timedPopup} setTrigger={setTimedPopup}>
         <h2>Welcome To Gabby's Salsa!</h2>

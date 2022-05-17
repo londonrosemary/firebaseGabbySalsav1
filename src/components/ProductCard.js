@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProductCard({ product, handleAddToCart }) {
+export default function ProductCard({ product, onAdd }) {
   return (
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -24,9 +24,12 @@ export default function ProductCard({ product, handleAddToCart }) {
             <br />
           </div>
           <br />
-          <button onClick={handleAddToCart}>Add to Cart</button>
+          <button onClick={() => onAdd(product)}>Add to Cart</button>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
