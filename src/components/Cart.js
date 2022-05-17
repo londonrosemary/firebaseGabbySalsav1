@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
-export default function Cart({ cartItems, onAdd }) {
+export default function Cart({ cartItems, onAdd, onRemove }) {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems"));
@@ -11,24 +11,50 @@ export default function Cart({ cartItems, onAdd }) {
     }
   }, [cartItems]);
   console.log(items);
+
   return (
     <div>
       <Header />
-      Cart
       <br />
       <br />
-      {localStorage.length === 0 && <div>Cart is empty</div>}
-      {items.map((item) => {
-        return (
-          <div key={item.id}>
-            <div>{item.name}</div>
-            <div>{item.quantity}</div>
-            {/* button onClick={() => onAdd(item)}> Add to Cart</button>; */}
-            <br />
-            <br />
-          </div>
-        );
-      })}
+      <div className="cart">
+        {localStorage.length === 0 && <div>Cart is empty</div>}
+        {items.map((item) => {
+          return (
+            <div className="cartCards">
+              <Card
+                key={item.id}
+                style={{ width: "18rem" }}
+                className="cartCards"
+              >
+                <Card.Title>{item.name}</Card.Title>
+                <img src={item.image} className="itemImage" />
+                <Card.Text> x {item.quantity}</Card.Text>
+                <div className="d-grid gap-2">
+                  <Button
+                    variant="outline-primary"
+                    size="sm"
+                    onClick={() => onAdd(item)}
+                  >
+                    {" "}
+                    +{" "}
+                  </Button>
+                  <Button
+                    variant="outline-primary"
+                    size="sm"
+                    onClick={() => onRemove(item)}
+                  >
+                    {" "}
+                    -{" "}
+                  </Button>
+                </div>
+                <br />
+                <br />
+              </Card>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

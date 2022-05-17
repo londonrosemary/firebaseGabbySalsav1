@@ -25,6 +25,7 @@ function App() {
 
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -36,10 +37,22 @@ function App() {
     } else {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
-
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log(localStorage);
-    console.log(cartItems);
+  };
+
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
   useEffect(
@@ -65,7 +78,9 @@ function App() {
         <Route path="/faqs" element={<FAQs />} />
         <Route
           path="/cart"
-          element={<Cart cartItems={cartItems} onAdd={onAdd} />}
+          element={
+            <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
+          }
         />
       </Routes>
       {/* <Popup trigger={timedPopup} setTrigger={setTimedPopup}>

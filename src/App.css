@@ -204,3 +204,19 @@
 .aboutImage{
   text-align: center;
 }
+
+.itemImage{
+  height: 10rem;
+  width: 10rem;
+}
+
+.cartCards{
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem
+}
+
+.cart {
+  text-align: center;
+}
