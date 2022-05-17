@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import { Button, Card } from "react-bootstrap";
 
-export default function Cart({ cartItems, onAdd, onRemove }) {
+export default function Cart({ setCartItems, cartItems, onAdd, onRemove }) {
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem("cartItems");
     const initialValue = JSON.parse(saved);
-    return initialValue || "";
+    return initialValue || [];
   });
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems"));
@@ -15,7 +15,18 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
     }
   }, [cartItems]);
 
-  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
+  // const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
+  const getTotalSum = () => {
+    return cartItems.reduce(
+      (sum, { price, quantity }) => sum + price * quantity,
+      0
+    );
+  };
+
+  function deleteItem() {
+    localStorage.removeItem("cartItems");
+    window.location.reload();
+  }
 
   if (items === "0" || items === null) {
     return (
@@ -69,10 +80,15 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
             );
           })}
         </div>
+        <div className="orderSubmit">Total Price: ${getTotalSum()}</div>
         <div className="orderSubmit">
-          <Button>Submit your order request!</Button>
+          <Button variant="outline-primary">Submit your order request!</Button>
+          <br />
+          <br />
+          <Button variant="outline-secondary" onClick={() => deleteItem()}>
+            Empty Cart
+          </Button>
         </div>
-        <div>Total Cost: ${itemsPrice.toFixed(2)}</div>
       </div>
     );
   }

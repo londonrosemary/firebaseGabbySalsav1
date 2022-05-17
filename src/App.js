@@ -84,7 +84,12 @@ function App() {
         <Route
           path="/cart"
           element={
-            <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
+            <Cart
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+            />
           }
         />
       </Routes>
