@@ -23,8 +23,12 @@ function App() {
   //   }, 15000);
   // }, []);
 
+  const cartFromLocalStorage = JSON.parse(
+    localStorage.getItem("cartItems") || "[]"
+  );
+
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([cartFromLocalStorage]);
 
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);

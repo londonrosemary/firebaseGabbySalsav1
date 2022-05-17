@@ -2,10 +2,10 @@ import React from "react";
 import Header from "./Header";
 import { Container } from "react-bootstrap";
 
-export default function Home() {
+export default function Home({ getCartTotal }) {
   return (
     <div>
-      <Header />
+      <Header getCartTotal={getCartTotal} />
       <div className="homeWrapper">
         <Container>
           <h3 className="homePageTextWrapper">
