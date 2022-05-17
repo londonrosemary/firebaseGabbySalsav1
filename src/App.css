@@ -205,6 +205,18 @@
   text-align: center;
 }
 
+.aboutHead {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.aboutBody {
+  text-align: center;
+  padding: 1rem;
+}
+
 .itemImage{
   height: 10rem;
   width: 10rem;
@@ -219,4 +231,9 @@
 
 .cart {
   text-align: center;
+}
+
+.orderSubmit {
+  text-align: center;
+  padding: 4rem;
 }

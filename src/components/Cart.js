@@ -67,6 +67,9 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
             );
           })}
         </div>
+        <div className="orderSubmit">
+          <Button>Submit your order request!</Button>
+        </div>
       </div>
     );
   }
