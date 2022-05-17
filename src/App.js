@@ -31,15 +31,15 @@ function App() {
   const [cartItems, setCartItems] = useState([cartFromLocalStorage]);
 
   const onAdd = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
+    const exist = cartFromLocalStorage.find((x) => x.id === product.id);
     if (exist) {
       setCartItems(
-        cartItems.map((x) =>
+        cartFromLocalStorage.map((x) =>
           x.id === product.id ? { ...exist, quantity: exist.quantity + 1 } : x
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      setCartItems([...cartFromLocalStorage, { ...product, quantity: 1 }]);
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log(localStorage);

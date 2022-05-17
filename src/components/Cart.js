@@ -14,7 +14,6 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
       setItems(items);
     }
   }, [cartItems]);
-  console.log(items);
 
   if (items === "" || items === null) {
     return (
@@ -40,7 +39,9 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
                 >
                   <Card.Title>{item.name}</Card.Title>
                   <img src={item.image} className="itemImage" />
-                  <Card.Text> x {item.quantity}</Card.Text>
+                  <Card.Text>
+                    {item.quantity} x ${item.price}
+                  </Card.Text>
                   <div className="d-grid gap-2">
                     <Button
                       variant="outline-primary"
