@@ -6,10 +6,10 @@ import Landing from "./components/Landing";
 import Home from "./components/Home";
 import Products from "./components/Products";
 import About from "./components/About";
-import FAQs from "./components/FAQs";
 import Cart from "./components/Cart";
 // import Popup from "./components/Popup";
 import { onSnapshot, collection } from "firebase/firestore";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // const [timedPopup, setTimedPopup] = useState(false);
@@ -48,7 +48,7 @@ function App() {
   const onRemove = (product) => {
     const exist = cartFromLocalStorage.find((x) => x.id === product.id);
     if (exist.qty === 1) {
-      setCartItems(cartFromLocalStorage.filter((x) => x.id !== product.id));
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
     } else {
       setCartItems(
         cartFromLocalStorage.map((x) =>
@@ -67,7 +67,6 @@ function App() {
       ),
     []
   );
-
   return (
     <div className="App">
       <Routes>
@@ -80,7 +79,6 @@ function App() {
           }
         />
         <Route path="about" element={<About />} />
-        <Route path="/faqs" element={<FAQs />} />
         <Route
           path="/cart"
           element={

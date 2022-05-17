@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import { Button, Card } from "react-bootstrap";
 
-export default function Cart({ setCartItems, cartItems, onAdd, onRemove }) {
+export default function Cart({
+  setCartItems,
+  cartItems,
+  onAdd,
+  onRemove,
+  notify,
+}) {
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem("cartItems");
     const initialValue = JSON.parse(saved);
@@ -15,7 +21,6 @@ export default function Cart({ setCartItems, cartItems, onAdd, onRemove }) {
     }
   }, [cartItems]);
 
-  // const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
   const getTotalSum = () => {
     return cartItems.reduce(
       (sum, { price, quantity }) => sum + price * quantity,
@@ -83,6 +88,7 @@ export default function Cart({ setCartItems, cartItems, onAdd, onRemove }) {
         <div className="orderSubmit">Total Price: ${getTotalSum()}</div>
         <div className="orderSubmit">
           <Button variant="outline-primary">Submit your order request!</Button>
+
           <br />
           <br />
           <Button variant="outline-secondary" onClick={() => deleteItem()}>

@@ -25,7 +25,6 @@ export default function Header() {
           <Nav className="me-auto">
             <Nav.Link href="/products">Products</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            {/* <Nav.Link href="/faqs">FAQs</Nav.Link> */}
             <Nav.Link href="/cart">Cart</Nav.Link>
           </Nav>
           <Nav>
