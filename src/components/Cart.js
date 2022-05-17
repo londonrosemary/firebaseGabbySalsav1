@@ -15,7 +15,9 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
     }
   }, [cartItems]);
 
-  if (items === "" || items === null) {
+  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.qty, 0);
+
+  if (items === "0" || items === null) {
     return (
       <div>
         <Header /> <div className="cart">Cart is empty</div>
@@ -70,6 +72,7 @@ export default function Cart({ cartItems, onAdd, onRemove }) {
         <div className="orderSubmit">
           <Button>Submit your order request!</Button>
         </div>
+        <div>Total Cost: ${itemsPrice.toFixed(2)}</div>
       </div>
     );
   }
