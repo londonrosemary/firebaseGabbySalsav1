@@ -12,7 +12,7 @@ export default function Cart({
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem("cartItems");
     const initialValue = JSON.parse(saved);
-    return initialValue || [];
+    return initialValue;
   });
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems"));

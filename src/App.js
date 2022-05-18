@@ -35,7 +35,9 @@ function App() {
     if (exist) {
       setCartItems(
         cartFromLocalStorage.map((x) =>
-          x.id === product.id ? { ...exist, quantity: exist.quantity + 1 } : x
+          x.id === product.id
+            ? { ...exist, quantity: (exist.quantity += 1) }
+            : x
         )
       );
     } else {
@@ -52,7 +54,9 @@ function App() {
     } else {
       setCartItems(
         cartFromLocalStorage.map((x) =>
-          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
+          x.id === product.id
+            ? { ...exist, quantity: (exist.quantity -= 1) }
+            : x
         )
       );
     }

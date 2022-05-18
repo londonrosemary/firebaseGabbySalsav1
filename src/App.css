@@ -62,11 +62,11 @@
 .flip-card {
   background-color: transparent;
   width: 300px;
-  height: 200px;
+  height: 300px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   display: inline-block;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 2rem;
+  grid-gap: 4rem;
   padding: 2rem;
 }
 
