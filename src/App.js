@@ -42,7 +42,7 @@ function App() {
       setCartItems([...cartFromLocalStorage, { ...product, quantity: 1 }]);
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    console.log(localStorage);
+    console.log(localStorage.getItem("cartItems"));
   };
 
   const onRemove = (product) => {

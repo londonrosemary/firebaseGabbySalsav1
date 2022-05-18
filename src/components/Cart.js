@@ -46,7 +46,6 @@ export default function Cart({
         <br />
         <br />
         <div className="cart">
-          {items.length === "" && <div>Cart is empty</div>}
           {items.map((item) => {
             return (
               <div className="cartCards">
@@ -56,7 +55,7 @@ export default function Cart({
                   className="cartCards"
                 >
                   <Card.Title>{item.name}</Card.Title>
-                  <img src={item.image} className="itemImage" />
+                  <img src={item.image} className="itemImage" alt={item.name} />
                   <Card.Text>
                     {item.quantity} x ${item.price}
                   </Card.Text>
