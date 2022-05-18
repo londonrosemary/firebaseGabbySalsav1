@@ -16,7 +16,7 @@ export default function Cart({ setCartItems, cartItems, onAdd, notify }) {
   console.log(cartItems);
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.quantity <= 1) {
+    if (exist.quantity === 0) {
       setCartItems(cartItems.filter((x) => x.id !== product.id)) &&
         localStorage.removeItem(product.id);
     } else {
