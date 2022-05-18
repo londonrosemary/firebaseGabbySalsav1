@@ -27,11 +27,20 @@ function App() {
     localStorage.getItem("cartItems") || "[]"
   );
 
+  function isLocalStorage() {
+    if (localStorage.getItem("cartItems")) {
+      console.log("yay!");
+    } else {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }
+
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([...cartFromLocalStorage]);
 
   const onAdd = (product) => {
     console.log("clicked");
+    isLocalStorage();
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
       setCartItems(
@@ -51,19 +60,30 @@ function App() {
 
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.quantity === 1) {
+    if (exist.quantity <= 1) {
       setCartItems(cartItems.filter((x) => x.id !== product.id));
     } else {
       setCartItems(
-        cartFromLocalStorage.map((x) =>
-          x.id === product.id
-            ? { ...exist, quantity: (exist.quantity -= 1) }
-            : x
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
         )
       );
     }
-    console.log(localStorage);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    // const exist = cartItems.find((x) => x.id === product.id);
+    // if (exist.quantity === 1) {
+    //   setCartItems(cartItems.filter((x) => x.id !== product.id));
+    // } else {
+    //   setCartItems(
+    //     cartFromLocalStorage.map((x) =>
+    //       x.id === product.id
+    //         ? { ...exist, quantity: (exist.quantity -= 1) }
+    //         : x
+    //     )
+    //   );
+    // }
+    // console.log(localStorage);
+    // localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
   useEffect(

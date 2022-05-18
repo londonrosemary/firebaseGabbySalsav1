@@ -33,8 +33,8 @@ export default function Cart({
     localStorage.removeItem("cartItems");
     window.location.reload();
   }
-  console.log(items);
-  if (items === "0" || items === null) {
+  console.log(cartItems);
+  if (cartItems === "0" || cartItems === null) {
     return (
       <div>
         <Header /> <div className="cart">Cart is empty</div>
