@@ -32,16 +32,30 @@ function App() {
 
   const onAdd = (product) => {
     const exist = cartFromLocalStorage.find((x) => x.id === product.id);
+    //   if (exist) {
+    //     setCartItems(
+    //       cartFromLocalStorage.map((x) =>
+    //         x.id === product.id
+    //           ? { ...exist, quantity: (exist.quantity += 1) }
+    //           : x
+    //       )
+    //     );
+    //   } else {
+    //     setCartItems([...cartFromLocalStorage, { ...product, quantity: 1 }]);
+    //   }
+    //   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    //   console.log(localStorage.getItem("cartItems"));
+    // };
     if (exist) {
       setCartItems(
-        cartFromLocalStorage.map((x) =>
-          x.id === product.id
-            ? { ...exist, quantity: (exist.quantity += 1) }
-            : x
+        cartItems.map((item) =>
+          item.id === product.id
+            ? { ...exist, quantity: exist.quantity + 1 }
+            : item
         )
       );
     } else {
-      setCartItems([...cartFromLocalStorage, { ...product, quantity: 1 }]);
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log(localStorage.getItem("cartItems"));

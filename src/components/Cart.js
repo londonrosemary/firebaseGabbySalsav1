@@ -14,6 +14,7 @@ export default function Cart({
     const initialValue = JSON.parse(saved);
     return initialValue;
   });
+
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("cartItems"));
     if (cartItems) {
@@ -32,7 +33,7 @@ export default function Cart({
     localStorage.removeItem("cartItems");
     window.location.reload();
   }
-
+  console.log(items);
   if (items === "0" || items === null) {
     return (
       <div>
