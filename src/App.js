@@ -31,12 +31,13 @@ function App() {
   const [cartItems, setCartItems] = useState([...cartFromLocalStorage]);
 
   const onAdd = (product) => {
-    const exist = cartFromLocalStorage.find((x) => x.id === product.id);
+    console.log("clicked");
+    const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
       setCartItems(
         cartItems.map((item) =>
           item.id === product.id
-            ? { ...exist, quantity: exist.quantity + 1 }
+            ? { ...exist, quantity: (exist.quantity += 1) }
             : item
         )
       );
@@ -45,10 +46,11 @@ function App() {
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log(localStorage.getItem("cartItems"));
+    console.log("cartItems:", cartItems);
   };
 
   const onRemove = (product) => {
-    const exist = cartFromLocalStorage.find((x) => x.id === product.id);
+    const exist = cartItems.find((x) => x.id === product.id);
     if (exist.quantity === 1) {
       setCartItems(cartItems.filter((x) => x.id !== product.id));
     } else {

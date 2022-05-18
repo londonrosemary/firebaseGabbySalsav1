@@ -9,6 +9,19 @@ export default function Cart({
   onRemove,
   notify,
 }) {
+  const [items, setItems] = useState(() => {
+    const saved = localStorage.getItem("cartItems");
+    const initialValue = JSON.parse(saved);
+    return initialValue;
+  });
+
+  // useEffect(() => {
+  //   const items = JSON.parse(localStorage.getItem("cartItems"));
+  //   if (cartItems) {
+  //     setItems(items);
+  //   }
+  // }, [cartItems]);
+
   const getTotalSum = () => {
     return cartItems.reduce(
       (sum, { price, quantity }) => sum + price * quantity,
@@ -20,8 +33,8 @@ export default function Cart({
     localStorage.removeItem("cartItems");
     window.location.reload();
   }
-  console.log(cartItems);
-  if (cartItems === "0" || cartItems === null) {
+  console.log(items);
+  if (items === "0" || items === null) {
     return (
       <div>
         <Header /> <div className="cart">Cart is empty</div>
