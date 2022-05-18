@@ -61,7 +61,8 @@ function App() {
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist.quantity <= 1) {
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
+      setCartItems(cartItems.filter((x) => x.id !== product.id)) &&
+        localStorage.removeItem("cartItems", product);
     } else {
       setCartItems(
         cartItems.map((x) =>

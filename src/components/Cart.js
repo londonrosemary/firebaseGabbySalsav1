@@ -2,38 +2,34 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import { Button, Card } from "react-bootstrap";
 
-export default function Cart({
-  setCartItems,
-  cartItems,
-  onAdd,
-  onRemove,
-  notify,
-}) {
-  const [items, setItems] = useState(() => {
-    const saved = localStorage.getItem("cartItems");
-    const initialValue = JSON.parse(saved);
-    return initialValue;
-  });
-
-  // useEffect(() => {
-  //   const items = JSON.parse(localStorage.getItem("cartItems"));
-  //   if (cartItems) {
-  //     setItems(items);
-  //   }
-  // }, [cartItems]);
-
+export default function Cart({ setCartItems, cartItems, onAdd, notify }) {
   const getTotalSum = () => {
     return cartItems.reduce(
       (sum, { price, quantity }) => sum + price * quantity,
       0
     );
   };
-
   function deleteItem() {
     localStorage.removeItem("cartItems");
     window.location.reload();
   }
   console.log(cartItems);
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.quantity <= 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id)) &&
+        localStorage.removeItem(product.id);
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id
+            ? { ...exist, quantity: (exist.quantity -= 1) }
+            : x
+        )
+      );
+    }
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  };
   if (cartItems === "0" || cartItems === null) {
     return (
       <div>
