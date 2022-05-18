@@ -29,7 +29,6 @@ function App() {
 
   function isLocalStorage() {
     if (localStorage.getItem("cartItems")) {
-      console.log("yay!");
     } else {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
@@ -39,7 +38,6 @@ function App() {
   const [cartItems, setCartItems] = useState([...cartFromLocalStorage]);
 
   const onAdd = (product) => {
-    console.log("clicked");
     isLocalStorage();
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -54,8 +52,6 @@ function App() {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    console.log(localStorage.getItem("cartItems"));
-    console.log("cartItems:", cartItems);
   };
 
   const onRemove = (product) => {
